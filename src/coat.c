@@ -1,17 +1,16 @@
 #include <arpa/inet.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <string.h>
-#include <time.h>
-#include <stdint.h>
+
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <errno.h>
+#include <string.h>
+#include <time.h>
 
 #include "coat.h"
 
-/**
-  * Flush all buffered data points into the file storage.
-**/
+/* Flush all buffered data points into the file storage. */
 static void
 coat_flush(coat* c)
 {
