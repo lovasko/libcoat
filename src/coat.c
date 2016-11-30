@@ -22,15 +22,15 @@ coat_flush(coat* c)
 int
 coat_open(coat* c, char* path, void* buf_mem, uint32_t buf_cnt)
 {
-	mode_t mode;
+  mode_t mode;
 
   if (c == NULL || path == NULL)
     return COAT_E_NULL;
 
   /* open story file for appending */
   errno = 0;
-	mode = S_IRWXU | S_IRWXG;
-	c->fd = open(path, O_APPEND | O_CREAT | O_WRONLY, mode);
+  mode = S_IRWXU | S_IRWXG;
+  c->fd = open(path, O_APPEND | O_CREAT | O_WRONLY, mode);
   if (c->fd == -1)
     return COAT_E_NULL;
 
