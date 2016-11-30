@@ -69,7 +69,7 @@ coat_write(coat* c, float val)
     c->buf_mem[c->cnt]   = store_time;
     c->buf_mem[c->cnt+1] = store_value;
     c->cnt++;
-    
+
     if (c->cnt == c->buf_cnt)
       coat_flush(c);
   }
@@ -83,7 +83,7 @@ coat_close(coat* c)
   if (c == NULL)
     return COAT_E_NULL;
 
-  coat_flush(c);  
+  coat_flush(c);
 
   if (c->buf_own)
     free(c->buf_mem);
