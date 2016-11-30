@@ -9,7 +9,7 @@
 
 /**
   * Coat instance handling storage and buffering.
-  * This structure is intended to be used in an opaque fashion.
+  * This data type is intended to be treated as an opaque structure.
 **/
 typedef struct coat {
   uint32_t* buf_mem; /**< Buffer memory.              */
@@ -40,12 +40,13 @@ typedef struct coat {
 int coat_open(coat* c, char* path, void* buf_mem, uint32_t buf_cnt);
 
 /**
-  * Store a data point with the current timestamp.
+  * Store a data point.
   *
   * NOTE: In case that the coat instance is using buffering, such point
   * might not appear on the disk right away.
   *
   * @param[in] c   coat instance
+  * @param[in] ts  data point timestamp in 2000 epoch (implicit: current time)
   * @param[in] val data point value
   *
   * @return status code
@@ -54,6 +55,7 @@ int coat_open(coat* c, char* path, void* buf_mem, uint32_t buf_cnt);
   * @retval COAT_E_IO   error while writing the data (check errno)
 **/
 int coat_write(coat* c, float val);
+int coat_write_ex(coat* c, uint32_t ts, float val);
 
 /**
   * Free all resources held by the coat instance. Custom memory used for
