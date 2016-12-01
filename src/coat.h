@@ -7,6 +7,11 @@
 #define COAT_E_NULL 1
 #define COAT_E_IO   2
 
+/*
+  libcoat is a C89 library that provides storage of time series data
+  into a file or a file descriptor in the GoatSwim raw format.
+*/
+
 /**
   * Coat instance handling storage and buffering.
   * This data type is intended to be treated as an opaque structure.
@@ -17,6 +22,8 @@ typedef struct coat {
   uint32_t  cnt;     /**< Current buffer entry count. */
   int       fd;      /**< Storage file descriptor.    */
   int       buf_own; /**< Buffer memory ownership.    */
+  int       fd_own;  /**< File descriptor ownership.  */
+  int       padding; /**< Dummy structure padding.    */
 } coat;
 
 
@@ -28,7 +35,8 @@ typedef struct coat {
  * to be of necessary size, precisely >= buf_cnt * 8.
  *
  * @param[in] c       coat instance (not allocated here)
- * @param[in] path    file path
+ * @param[in] path    file path (alternative to fd)
+ * @param[in] fd      file descriptor (alternative to path)
  * @param[in] buf_mem pointer to custom buffer (allocated internally if NULL)
  * @param[in] buf_cnt custom buffer entry count (zero for no buffer usage)
  *
@@ -37,7 +45,8 @@ typedef struct coat {
  * @retval COAT_E_NULL c and/or path are NULL
  * @retval COAT_E_IO   error while opening the file (check errno)
 **/
-int coat_open(coat* c, char* path, void* buf_mem, uint32_t buf_cnt);
+int coat_open_file(coat* c, char* path, void* buf_mem, uint32_t buf_cnt);
+int coat_open_fd(coat* c, int fd, void* buf_mem, uint32_t buf_cnt);
 
 /**
   * Store a data point.
