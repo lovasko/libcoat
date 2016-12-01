@@ -14,7 +14,7 @@ main(void)
   coat c;
   double avg;
 
-  coat_open(&c, "load.gs", NULL, 0);
+  coat_open_file(&c, "load.gs", NULL, 0);
 
   while (1) {
     getloadavg(&avg, 1);
