@@ -13,9 +13,9 @@
 */
 
 /**
-  * Coat instance handling storage and buffering.
-  * This data type is intended to be treated as an opaque structure.
-**/
+ * Coat instance handling storage and buffering.
+ * This data type is intended to be treated as an opaque structure.
+*/
 typedef struct coat {
   uint32_t* buf_mem; /**< Buffer memory.              */
   uint32_t  buf_cnt; /**< Number of buffer entries.   */
@@ -44,39 +44,39 @@ typedef struct coat {
  * @retval COAT_OK     success
  * @retval COAT_E_NULL c and/or path are NULL
  * @retval COAT_E_IO   error while opening the file (check errno)
-**/
+*/
 int coat_open_file(coat* c, char* path, void* buf_mem, uint32_t buf_cnt);
 int coat_open_fd(coat* c, int fd, void* buf_mem, uint32_t buf_cnt);
 
 /**
-  * Store a data point.
-  *
-  * NOTE: In case that the coat instance is using buffering, such point
-  * might not appear on the disk right away.
-  *
-  * @param[in] c   coat instance
-  * @param[in] ts  data point timestamp in 2000 epoch (implicit: current time)
-  * @param[in] val data point value
-  *
-  * @return status code
-  * @retval COAT_OK     success
-  * @retval COAT_E_NULL c is NULL
-  * @retval COAT_E_IO   error while writing the data (check errno)
-**/
+ * Store a data point.
+ *
+ * NOTE: In case that the coat instance is using buffering, such point
+ * might not appear on the disk right away.
+ *
+ * @param[in] c   coat instance
+ * @param[in] ts  data point timestamp in 2000 epoch (implicit: current time)
+ * @param[in] val data point value
+ *
+ * @return status code
+ * @retval COAT_OK     success
+ * @retval COAT_E_NULL c is NULL
+ * @retval COAT_E_IO   error while writing the data (check errno)
+*/
 int coat_write(coat* c, float val);
 int coat_write_ex(coat* c, uint32_t ts, float val);
 
 /**
-  * Free all resources held by the coat instance. Custom memory used for
-  * data point buffering is not being freed.
-  *
-  * @param[in] c coat instance
-  *
-  * @return status code
-  * @retval COAT_OK     success
-  * @retval COAT_E_NULL c is NULL
-  * @retval COAT_E_IO   error while closing the file descriptor (check errno)
-**/
+ * Free all resources held by the coat instance. Custom memory used for
+ * data point buffering is not being freed.
+ *
+ * @param[in] c coat instance
+ *
+ * @return status code
+ * @retval COAT_OK     success
+ * @retval COAT_E_NULL c is NULL
+ * @retval COAT_E_IO   error while closing the file descriptor (check errno)
+*/
 int coat_close(coat* c);
 
 #endif
