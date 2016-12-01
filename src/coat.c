@@ -88,6 +88,9 @@ coat_close(coat* c)
   if (c->buf_own)
     free(c->buf_mem);
 
-  close(c->fd);
+  errno = 0;
+  if (close(c->fd) == -1)
+    return COAT_E_IO;
+
   return COAT_OK;
 }
