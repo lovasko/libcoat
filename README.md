@@ -10,7 +10,7 @@ The `libcoat` a client-side library for the
 * no loops used (guaranteed non-blocking flow)
 
 ## Example
-The following [examples/load.c](example) will collect the system load over
+The following [example](examples/load.c) will collect the system load over
 the last minute and write it to the disk in a GoatSwim raw format:
 
 ```c
