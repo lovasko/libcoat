@@ -3,13 +3,14 @@
 
 #include <stdint.h>
 
+/* status codes */
 #define COAT_OK     0
 #define COAT_E_NULL 1
 #define COAT_E_IO   2
 
 /*
-  libcoat is a C89 library that provides storage of time series data
-  into a file or a file descriptor in the GoatSwim raw format.
+ * libcoat is a C89 library that provides storage of time series data
+ * into a file or a file descriptor in the GoatSwim raw format.
 */
 
 /**
@@ -25,7 +26,6 @@ typedef struct coat {
   int       fd_own;  /**< File descriptor ownership.  */
   int       padding; /**< Dummy structure padding.    */
 } coat;
-
 
 /**
  * Initialize the file storage for data points.
